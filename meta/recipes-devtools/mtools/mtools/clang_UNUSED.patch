@@ -1,0 +1,24 @@
+From 6654edfb1eee416b58bcb6490658f80071a353c2 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 19 Sep 2018 11:55:41 -0700
+Subject: [PATCH] Undefine UNUSED macros with clang
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ sysincludes.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sysincludes.h b/sysincludes.h
+index 6b322ff..48daecd 100644
+--- a/sysincludes.h
++++ b/sysincludes.h
+@@ -85,7 +85,7 @@ ac_cv_func_setpgrp_void=yes ../mtools/configure --build=i386-linux-gnu --host=i3
+ #if defined __GNUC__ && defined __STDC__
+ /* gcc -traditional doesn't have PACKED, UNUSED and NORETURN */
+ # define PACKED __attribute__ ((packed))
+-# if __GNUC__ == 2 && __GNUC_MINOR__ > 6 || __GNUC__ >= 3
++# if (__GNUC__ == 2 && __GNUC_MINOR__ > 6 || __GNUC__ >= 3) && !defined(__clang__)
+ /* gcc 2.6.3 doesn't have "unused" */		/* mool */
+ #  define UNUSED(x) x __attribute__ ((unused));x
+ #  define UNUSEDP __attribute__ ((unused))

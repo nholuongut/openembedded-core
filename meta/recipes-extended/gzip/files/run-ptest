@@ -1,0 +1,3 @@
+#!/bin/sh
+
+VERBOSE=1 make -C src/tests check
